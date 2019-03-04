@@ -1,3 +1,4 @@
+
 VERSION=0.1
 CONTAINER=elementservice
 echo Build go sources

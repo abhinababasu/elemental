@@ -1,0 +1,7 @@
+* text eol-lf
+
+*.go text
+*.sh text
+
+*.jpg binary
+*.png binary
