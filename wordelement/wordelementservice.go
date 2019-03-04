@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"log"
 	"net/http"
+	"os"
 	"strings"
 
 	"github.com/abhinababasu/elemental/element"
@@ -53,7 +54,14 @@ func handler(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
+	port := "8080"
+	if len(os.Args) > 1 {
+		port = os.Args[1]
+	}
+
+	port = ":" + port
+
 	http.HandleFunc("/", handler)
-	log.Println("Listening on 8080")
-	log.Fatal(http.ListenAndServe(":8080", nil))
+	log.Println("Listening on " + port)
+	log.Fatal(http.ListenAndServe(port, nil))
 }
