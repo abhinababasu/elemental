@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+    name: elementalapi-pod
+    labels:
+        zone: prod
+        version: v1
+spec:
+    containers:
+    - name: elemental-ctr
+      image: bonggeek/elementservice:latest
+      ports:
+      - containerPort: 8080

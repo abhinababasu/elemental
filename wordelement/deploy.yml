@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: elemental-api-deploy
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: elemental-api
+    spec:
+      containers:
+      - name: elemental-pod
+        image: bonggeek/elementservice:latest
+        ports:
+        - containerPort: 8080
+
