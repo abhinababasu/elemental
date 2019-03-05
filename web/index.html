@@ -31,8 +31,13 @@
 
     // Make the actual CORS request.
     function fetchElement() {
-        var words=document.getElementById('WordBox').value;
+        var words = document.getElementById('WordBox').value;
+        var banner = document.getElementById("BannerImg");
+        banner.src = "./banner_narrow.jpg";
+
         $("#ResultImgDiv").empty();
+        $("#ResultDiv").empty();
+        
         // This is a sample server that supports CORS.
         var url = 'http://elementalaci01.westus2.azurecontainer.io:8080/?words=' + words;
         var xhr = createCORSRequest('GET', url);
@@ -65,21 +70,20 @@
                     elem.setAttribute("src", "./images/" + e.AtNumber + ".jpg");
                     elem.setAttribute("alt", e.Name);
                     $("#ResultImgDiv").append(elem);             
-
+                    
                     row = table.insertRow(-1);
                     
                     cellSym = row.insertCell(0);
-                    cellSym.innerHTML = '<b>' + '<sup>' + e.AtNumber + '</sup>' + e.Symbol + '</b>'
-                    cellDesc = row.insertCell(1)
-                    cellDesc.innerHTML = e.Description
+                    cellSym.innerHTML = '<b>' + '<sup>' + e.AtNumber + '</sup>' + e.Symbol + '</b>';
+                    cellDesc = row.insertCell(1);
+                    cellDesc.innerHTML = e.Description;
 
                 }
 
-                $("#ResultImgDiv").append("<br/>")
-                
+                $("#ResultImgDiv").append("<br/>");
             }
 
-            $("#ResultDiv").append(table)
+            $("#ResultDiv").append(table);
 
         };
         
@@ -104,8 +108,11 @@
         <div id="ResultImgDiv"></div>
         <div id="ResultDiv"></div>
    </div>
+   <!--
+       Following not working and floating up
    <div id="Footer">
         <p>(c) Abhinaba Basu</p>
     </div>
+   -->
  </body>
 </html>
