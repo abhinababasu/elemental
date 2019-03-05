@@ -48,33 +48,38 @@
             if (res.length == 0){
                 return;
             }
-            var str = '';
+            
+            var table = document.createElement("table")
+                table.className = "TFtable"
+            
             for (var i=0; i < res.length; i++){
                 var r = res[i];
-                str += '<h3>';
-                str += r.Word;
-                str += '</h3>';
-                str += '<br>';
                 
+                                
                 for(var j = 0; j < r.Elements.length; j++){
-                    var e = r.Elements[j];
-                    str += '<sup>' + e.AtNumber + '</sup>';
-                    str += e.Symbol;
-                    str += ' ';
                     
+                    var e = r.Elements[j];
+                                        
                     var elem = document.createElement("img");
                     elem.className = "ImageElement";
                     elem.setAttribute("src", "./images/" + e.AtNumber + ".jpg");
                     elem.setAttribute("alt", e.Name);
-                    $("#ResultImgDiv").append(elem);
+                    $("#ResultImgDiv").append(elem);             
+
+                    row = table.insertRow(-1);
+                    
+                    cellSym = row.insertCell(0);
+                    cellSym.innerHTML = '<b>' + '<sup>' + e.AtNumber + '</sup>' + e.Symbol + '</b>'
+                    cellDesc = row.insertCell(1)
+                    cellDesc.innerHTML = e.Description
+
                 }
 
-                $("#ResultImgDiv").append('<br>');
-
-                str += '\r\n';
+                $("#ResultImgDiv").append("<br/>")
+                
             }
 
-            //$("#ResultDiv").html(str);
+            $("#ResultDiv").append(table)
 
         };
         

@@ -108,6 +108,13 @@ img.ImageElement
     padding: 15px;
 }
 
+#ResultDiv
+{
+    padding: 15px;
+}
+
+
+
 a:link
 {
     text-decoration: none;
@@ -142,23 +149,29 @@ img
     border-style: none;
 }
 
-table.applist
+.elemList
 {
     border:none;
 }
 
-table.applist td
-{
-    padding: 5px;
-}
 
-td.tdAppIcon
-{
-    width: 100px;
-}
 
-td.tdAppName
-{
-    width: 120px;
-    padding: 5px;
+.TFtable{
+    width:100%; 
+    border-collapse:collapse; 
+}
+.TFtable td{ 
+    padding:7px; border:black 1px solid;
+}
+/* provide some minimal visual accomodation for IE8 and below */
+.TFtable tr{
+    background: #eeeeee;
+}
+/*  Define the background color for all the ODD background rows  */
+.TFtable tr:nth-child(odd){ 
+    background: #dddddd;
+}
+/*  Define the background color for all the EVEN background rows  */
+.TFtable tr:nth-child(even){
+    background: #eeeeee;
 }
