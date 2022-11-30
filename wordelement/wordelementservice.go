@@ -2,10 +2,12 @@ package main
 
 import (
 	"encoding/json"
+	"flag"
+	"fmt"
 	"log"
 	"net/http"
-	"os"
 	"strings"
+	"time"
 
 	"github.com/abhinababasu/elemental/element"
 )
@@ -16,6 +18,9 @@ type ElementResponse struct {
 }
 
 func handler(w http.ResponseWriter, r *http.Request) {
+	timeStart := time.Now()
+	log.Printf("Remote=%v;Request=%v %v,UA=%v", r.RemoteAddr, r.Method, r.URL.String(), r.UserAgent())
+
 	q := r.URL.Query()
 	w.Header().Add("Access-Control-Allow-Origin", "*")
 	words := q.Get("words")
@@ -51,17 +56,18 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	j, _ := json.MarshalIndent(result, "", "    ")
 	w.Header().Set("Content-Type", "application/json")
 	w.Write(j)
+
+	timeEnd := time.Since(timeStart)
+	log.Printf("Solved=%v;time=%vms;words=%v", words, timeEnd.Milliseconds(), len(result.Result))
 }
 
 func main() {
-	port := "8080"
-	if len(os.Args) > 1 {
-		port = os.Args[1]
-	}
-
-	port = ":" + port
+	port := flag.Int("port", 8080, "Port server will listen on")
+	flag.Parse()
 
 	http.HandleFunc("/", handler)
-	log.Println("Listening on " + port)
-	log.Fatal(http.ListenAndServe(port, nil))
+	addr := fmt.Sprintf(":%v", *port)
+	log.Println("Listening on ", addr)
+
+	log.Fatal(http.ListenAndServe(addr, nil))
 }

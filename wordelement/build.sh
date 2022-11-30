@@ -14,4 +14,6 @@ echo Done ................................
 echo 
 echo Run Container using
 echo docker run -d -p 8080:8080 $CONTAINER:$VERSION
+echo OR
+echo docker push $DOCKER_ID_USER/$CONTAINER:latest
 

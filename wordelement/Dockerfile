@@ -1,8 +1,7 @@
 FROM golang:latest
 
-MAINTAINER abhinaba@gmail.com
-
 COPY wordelementservice /
 
-CMD ["/wordelementservice"]
+WORKDIR /
+CMD ["/wordelementservice", "-port=8080"]
 
