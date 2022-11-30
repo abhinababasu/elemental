@@ -13,14 +13,6 @@ body
     background-color: #ffffff;
 }
 
-#InputDiv
-{
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-    justify-content: center;
-}
-
 #Header
 {
     font-family: helvetica, Arial Black, Arial;
@@ -41,52 +33,69 @@ body
     font-size: 14px;
 }
 
-#WordButton
-{
-    width: *;
-    font-size: 14px;
-    border-radius: 15px 30px;
-    background-color: #DCDCDC; 
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    margin: 4px 2px;
-    cursor: pointer;
-    -webkit-transition-duration: 0.4s; /* Safari */
-    transition-duration: 0.4s;
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-}
+/* ============================================================================
+ * Input text box and button
+ * ============================================================================
+ */
 
-#WordButton:focus{
-    outline: none;
-}
-
-#WordBox
-{
-    width: 75%;
-    border: 5px solid white; 
-    -webkit-box-shadow: 
-      inset 0 0 8px  rgba(0,0,0,0.1),
-            0 0 16px rgba(0,0,0,0.1); 
-    -moz-box-shadow: 
-      inset 0 0 8px  rgba(0,0,0,0.1),
-            0 0 16px rgba(0,0,0,0.1); 
-    box-shadow: 
-      inset 0 0 8px  rgba(0,0,0,0.1),
-            0 0 16px rgba(0,0,0,0.1); 
-    padding: 15px;
-    background: rgba(255,255,255,0.5);
-    margin: 0 0 10px 0;
-    font-size: 20px;
-    
-}
-
-#WordBox:focus{
-    outline: none;
-}
+ #InputDiv
+ {
+     margin-left: auto;
+     margin-right: auto;
+     text-align: center;
+     justify-content: center;
+ }
+ 
+ #WordButton, #WordBox
+ {
+     vertical-align: middle;
+ 
+     height: 40px;
+     font-size: 20px;
+     border: 1px solid #606060; 
+     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+     
+     padding: 8px;
+     margin: 0 0 5px 0;
+ }
+ 
+ #WordButton 
+ {
+     width: 25%;
+     border-radius: 0px 5px 5px 0px;
+     min-width: 175px;
+ 
+     background-color: #CCCCCC; 
+     color: #606060;
+     
+     cursor: pointer;
+ }
+ 
+ #WordButton:focus{
+     outline: none;
+ }
+ #wordButton:hover 
+ {
+     font-weight: bold;
+     color: black;
+ }
+ 
+ #WordBox
+ {
+     width: 75%;
+ 
+     border-radius: 5px 0px 0px 5px;
+     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+ 
+     padding: 10px;
+     
+     background-color: white; 
+     color:black;
+ }
+ 
+ #WordBox:focus{
+     outline: none;
+ }
 
 #BannerImg
 {

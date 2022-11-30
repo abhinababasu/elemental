@@ -4,13 +4,19 @@
 <title>Word Element</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<link rel="stylesheet" media="screen and (orientation:portrait)" type="text/css" href="small.css" />
-<link rel="stylesheet" media="screen and (min-width:200px) and (max-width: 799px)" type="text/css" href="small.css" />
-<link rel="stylesheet" media="screen and (min-width: 800px)" type="text/css" href="default.css" />
+<link rel="stylesheet" type="text/css" href="default.css" />
 <script type="text/javascript" src="http://www.google.com/jsapi"></script>
 <script type="text/javascript">google.load("jquery", "1.6.0");</script>
 <script type="text/javascript">
-
+    // Add fully body arrow handler to shuffle through the results
+    window.onload = function() {
+        $("#WordBox").keyup(function(event) {
+            if (event.keyCode === 13) {
+                $("#WordButton").click();
+            }
+        });
+    };
+    
     // Create the XHR object.
     function createCORSRequest(method, url) {
         var xhr = new XMLHttpRequest();
@@ -28,7 +34,6 @@
         return xhr;
     }
 
-
     // Make the actual CORS request.
     function fetchElement() {
         var words = document.getElementById('WordBox').value;
@@ -39,7 +44,7 @@
         $("#ResultDiv").empty();
         
         // This is a sample server that supports CORS.
-        var url = 'http://elementalaci01.westus2.azurecontainer.io:8080/?words=' + words;
+        var url = 'http://commonvm1.westus2.cloudapp.azure.com:8080/?words=' + words;
         var xhr = createCORSRequest('GET', url);
         if (!xhr) {
             alert('CORS not supported');
@@ -101,9 +106,7 @@
     <div id="mainDiv">
         <img id="BannerImg" src="./banner.png" />
         <div id="InputDiv">
-            <p id="DescriptionText">Enter a word or name and see what it is made of</p>
-            <input type="text" id="WordBox" placeholder="Type a word"/>
-            <button id="WordButton" onclick="fetchElement()">Get Elements</button>
+            <input type="text" id="WordBox" placeholder="Enter a word or name and see what it is made of"/><button id="WordButton" onclick="fetchElement()">Get Elements</button>
         </div>
         <div id="ResultImgDiv"></div>
         <div id="ResultDiv"></div>
