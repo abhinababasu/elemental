@@ -19,7 +19,7 @@ type ElementResponse struct {
 
 func handler(w http.ResponseWriter, r *http.Request) {
 	timeStart := time.Now()
-	log.Printf("Remote=%v;Request=%v %v,UA=%v", r.RemoteAddr, r.Method, r.URL.String(), r.UserAgent())
+	log.Printf("Remote=%v;RealIp=%v;Request=%v %v,UA=%v", r.RemoteAddr, getRealIP(r), r.Method, r.URL.String(), r.UserAgent())
 
 	q := r.URL.Query()
 	w.Header().Add("Access-Control-Allow-Origin", "*")
@@ -60,6 +60,20 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	timeEnd := time.Since(timeStart)
 	log.Printf("Solved=%v;time=%vms;words=%v", words, timeEnd.Milliseconds(), len(result.Result))
 }
+
+func getRealIP(r *http.Request) string {
+	IPAddress := r.Header.Get("X-Real-IP")
+	if IPAddress == "" {
+		IPAddress = r.Header.Get("X-Forwarder-For")
+	}
+
+	if IPAddress == "" {
+		IPAddress = r.RemoteAddr
+	}
+
+	return IPAddress
+}
+
 
 func main() {
 	port := flag.Int("port", 8080, "Port server will listen on")
