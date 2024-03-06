@@ -44,7 +44,7 @@
         $("#ResultDiv").empty();
         
         // This is a sample server that supports CORS.
-        var url = 'http://44.230.151.33:8080/?words=' + words;
+        var url = 'http://44.230.151.33/elemental/?words=' + words;
         var xhr = createCORSRequest('GET', url);
         if (!xhr) {
             alert('CORS not supported');
